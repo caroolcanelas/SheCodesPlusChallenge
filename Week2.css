@@ -94,3 +94,8 @@ p {
 .celsius:hover {
   cursor: pointer;
 }
+.github-link {
+  font-family: "Josefin Sans", sans-serif;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+}
