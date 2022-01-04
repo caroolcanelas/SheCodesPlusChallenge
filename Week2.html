@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather website ☁</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Quicksand:wght@500&family=Roboto+Mono:wght@200;300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="Week2.css" />
+  </head>
+  <body>
+    <div class="container">
+      <fieldset>
+        <form id="search-city">
+          <p>
+            <input class="search" type="text" placeholder="Enter city name" />
+            <button class="search-button" type="button">🔍Search</button>
+            <button class="current-button" type="button">📍Current</button>
+          </p>
+        </form>
+        <h1 class="city">Rio de Janeiro</h1>
+        <h3 class="dateTime">Friday</h3>
+        <div class="card" style="width: 10rem">
+          <div class="card-body">
+            <h5 class="card-description">Sun</h5>
+            <p class="card-text">
+              <span class="icon">🌧</span>
+              <span class="temperature">28</span>
+              <span class="units"
+                ><a class="celsius">°C</a> |
+                <a class="fahrenheit" href="#">°F</a></span
+              >
+            </p>
+            <p>
+              Humidity: <span class="humidity">48</span>% Wind:
+              <span class="wind">10</span>km/h
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-1">
+            <p>Saturday</p>
+            <p>☁ 24º</p>
+          </div>
+          <div class="col-1">
+            <p>Sunday</p>
+            <p>🌤 31º</p>
+          </div>
+          <div class="col-1">
+            <p>Monday</p>
+            <p>🌥 25º</p>
+          </div>
+          <div class="col-1">
+            <p>Tuesday</p>
+            <p>🌤 32º</p>
+          </div>
+          <div class="col-1">
+            <p>Wednesday</p>
+            <p>⛈22º</p>
+          </div>
+          <div class="col-1">
+            <p>Thursday</p>
+            <p>⛅ 29º</p>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </body>
+  <script src="Week2.js"></script>
+</html>
