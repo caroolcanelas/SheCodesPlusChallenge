@@ -10,7 +10,7 @@ fieldset {
   border: 1px groove #ddd !important;
   border-radius: 5px;
   padding: 0 1.4em 1.4em !important;
-  margin: 0 0 1.5em 0 !important;
+  margin: 0 0 0em 0 !important;
   background-image: linear-gradient(to top, #b8e4f0 0%, #1597e5 100%);
 }
 .container {
@@ -98,4 +98,5 @@ p {
   font-family: "Josefin Sans", sans-serif;
   font-family: "Quicksand", sans-serif;
   font-size: 15px;
+  margin: 5px;
 }
