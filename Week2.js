@@ -1,3 +1,4 @@
+/* Current time and day */
 let weekDay = [
   "Sunday",
   "Monday",
@@ -23,37 +24,65 @@ if (minutes < 10) {
 let realTime = document.querySelector(".dateTime");
 realTime.innerHTML = `${day}, ${date},  ${hour}:${minutes}`;
 
+/* Forecast */
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  return days[day];
+}
+
 function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
-
-  let days = ["Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday"];
-
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-2">
-        <div class='forecast-date'><p>${day}</p></div>
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+      <div class="col-2">
+        <div class='forecast-date'><p>${formatDay(forecastDay.dt)}</p></div>
         <p><img
-          src="http://openweathermap.org/img/wn/50d@2x.png"
+          src="http://openweathermap.org/img/wn/${
+            forecastDay.weather[0].icon
+          }@2x.png"
           alt=""
           width="42"
         /></p>
         <div class='forecast-temp'>
-        <p><span class='forecast-max-temp'>31°</span>
-        <span class='forecast-min-temp'> 27°</span></p>
+        <p><span class='forecast-max-temp'>${Math.round(
+          forecastDay.temp.max
+        )}°</span>
+        <span class='forecast-min-temp'> ${Math.round(
+          forecastDay.temp.min
+        )}°</span></p>
       </div>
     </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
 
 function getForecast(coordinates) {
+  console.log(coordinates);
   let apiKey = "8cbd64a63ba04c3afa29f0681a36cb68";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
+
+/* Celsius and Fahrenheit conversion*/
 
 function convertToFahrenheit(event) {
   event.preventDefault();
@@ -80,6 +109,8 @@ fahrenheitLink.addEventListener("click", convertToFahrenheit);
 let celsiusLink = document.querySelector(".celsius");
 celsiusLink.addEventListener("click", convertToCelsius);
 
+/* Main Block (real temperature, place and detailed info*/
+
 function showTemperature(response) {
   let temperatureElement = document.querySelector(".temperature");
   let description = document.querySelector(".card-description");
@@ -103,10 +134,14 @@ function showTemperature(response) {
   getForecast(response.data.coord);
 }
 
+/*Principal city when the site starts*/
+
 let apiKey = "8cbd64a63ba04c3afa29f0681a36cb68";
 let city = "Rio de Janeiro";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 axios.get(apiUrl).then(showTemperature);
+
+/*Search for the user's city of choice*/
 
 function searchCity(event) {
   event.preventDefault();
@@ -119,6 +154,8 @@ function searchCity(event) {
 
 let searchForm = document.querySelector("#search-city");
 searchForm.addEventListener("submit", searchCity);
+
+/*Current position button*/
 
 function showPosition(position) {
   let apiKey = "8cbd64a63ba04c3afa29f0681a36cb68";
