@@ -105,11 +105,11 @@ p {
   width: 200px 242px;
 }
 
-.card .celsius {
+.units .celsius {
   color: rgb(33, 33, 33);
-  cursor: pointer;
+  cursor: default;
   text-decoration: none;
 }
-.card .celsius:hover {
+.units .celsius:hover {
   text-decoration: none;
 }
