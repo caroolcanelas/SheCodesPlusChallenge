@@ -26,6 +26,8 @@ realTime.innerHTML = `${day}, ${date},  ${hour}:${minutes}`;
 function convertToFahrenheit(event) {
   event.preventDefault();
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  celsiusLink.classList.remove("celsius");
+  fahrenheitLink.classList.add("celsius");
   let temperatureElement = document.querySelector(".temperature");
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
@@ -34,6 +36,8 @@ let celsiusTemperature = null;
 
 function convertToCelsius(event) {
   event.preventDefault();
+  celsiusLink.classList.add("celsius");
+  fahrenheitLink.classList.remove("celsius");
   let temperatureElement = document.querySelector(".temperature");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
