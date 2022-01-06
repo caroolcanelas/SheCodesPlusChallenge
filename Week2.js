@@ -23,7 +23,7 @@ if (minutes < 10) {
 let realTime = document.querySelector(".dateTime");
 realTime.innerHTML = `${day}, ${date},  ${hour}:${minutes}`;
 
-function displayForecast() {
+function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
 
   let days = ["Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday"];
@@ -47,7 +47,12 @@ function displayForecast() {
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
+}
+
+function getForecast(coordinates) {
+  let apiKey = "8cbd64a63ba04c3afa29f0681a36cb68";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function convertToFahrenheit(event) {
@@ -95,6 +100,7 @@ function showTemperature(response) {
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
   description.innerHTML = response.data.weather[0].description;
+  getForecast(response.data.coord);
 }
 
 let apiKey = "8cbd64a63ba04c3afa29f0681a36cb68";
@@ -128,5 +134,3 @@ function getCurrentPosition() {
 
 let button = document.querySelector(".current-button");
 button.addEventListener("click", getCurrentPosition);
-
-displayForecast();
