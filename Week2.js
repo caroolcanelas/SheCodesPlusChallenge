@@ -58,7 +58,8 @@ function showTemperature(response) {
 }
 
 let apiKey = "8cbd64a63ba04c3afa29f0681a36cb68";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Rio de Janeiro&appid=${apiKey}&units=metric`;
+let city = "Rio de Janeiro";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 axios.get(apiUrl).then(showTemperature);
 
 function searchCity(event) {
