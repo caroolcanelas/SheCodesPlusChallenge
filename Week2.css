@@ -104,3 +104,8 @@ p {
 .card-body {
   width: 200px 242px;
 }
+
+.units {
+  color: rgb(33, 33, 33);
+  cursor: default;
+}

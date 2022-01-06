@@ -25,16 +25,17 @@ realTime.innerHTML = `${day}, ${date},  ${hour}:${minutes}`;
 
 function convertToFahrenheit(event) {
   event.preventDefault();
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   let temperatureElement = document.querySelector(".temperature");
-  let temperature = temperatureElement.innerHTML;
-  temperature = Number(temperature);
-  temperatureElement.innerHTML = 66;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
+
+let celsiusTemperature = null;
 
 function convertToCelsius(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector(".temperature");
-  temperatureElement.innerHTML = 19;
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
 let fahrenheitLink = document.querySelector(".fahrenheit");
@@ -53,7 +54,8 @@ function showTemperature(response) {
   document.querySelector(".wind").innerHTML = Math.round(
     response.data.wind.speed
   );
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  celsiusTemperature = response.data.main.temp;
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
   cityElement.innerHTML = response.data.name;
   iconElement.setAttribute(
     "src",
