@@ -44,17 +44,22 @@ let celsiusLink = document.querySelector(".celsius");
 celsiusLink.addEventListener("click", convertToCelsius);
 
 function showTemperature(response) {
-  let temperature = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector(".temperature");
   let description = document.querySelector(".card-description");
+  let cityElement = document.querySelector(".city");
   document.querySelector(".city").innerHTML = response.data.name;
   document.querySelector(".humidity").innerHTML = response.data.main.humidity;
   document.querySelector(".wind").innerHTML = Math.round(
     response.data.wind.speed
   );
-  temperatureElement.innerHTML = `${temperature}`;
+  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  cityElement.innerHTML = response.data.name;
   description.innerHTML = response.data.weather[0].description;
 }
+
+let apiKey = "8cbd64a63ba04c3afa29f0681a36cb68";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Rio de Janeiro&appid=${apiKey}&units=metric`;
+axios.get(apiUrl).then(showTemperature);
 
 function searchCity(event) {
   event.preventDefault();

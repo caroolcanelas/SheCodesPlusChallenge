@@ -90,6 +90,7 @@ p {
 .card-description {
   text-align: center;
   font-size: large;
+  text-transform: capitalize;
 }
 .celsius:hover {
   cursor: pointer;
