@@ -23,6 +23,33 @@ if (minutes < 10) {
 let realTime = document.querySelector(".dateTime");
 realTime.innerHTML = `${day}, ${date},  ${hour}:${minutes}`;
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2">
+        <div class='forecast-date'><p>${day}</p></div>
+        <p><img
+          src="http://openweathermap.org/img/wn/50d@2x.png"
+          alt=""
+          width="42"
+        /></p>
+        <div class='forecast-temp'>
+        <p><span class='forecast-max-temp'>31°</span>
+        <span class='forecast-min-temp'> 27°</span></p>
+      </div>
+    </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
+
 function convertToFahrenheit(event) {
   event.preventDefault();
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
@@ -53,6 +80,7 @@ function showTemperature(response) {
   let description = document.querySelector(".card-description");
   let cityElement = document.querySelector(".city");
   let iconElement = document.querySelector("#icon");
+
   document.querySelector(".city").innerHTML = response.data.name;
   document.querySelector(".humidity").innerHTML = response.data.main.humidity;
   document.querySelector(".wind").innerHTML = Math.round(
@@ -100,3 +128,5 @@ function getCurrentPosition() {
 
 let button = document.querySelector(".current-button");
 button.addEventListener("click", getCurrentPosition);
+
+displayForecast();

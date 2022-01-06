@@ -113,3 +113,10 @@ p {
 .units .celsius:hover {
   text-decoration: none;
 }
+.col-2 {
+  font-family: "Josefin Sans", sans-serif;
+  font-family: "Quicksand", sans-serif;
+}
+.weather-forecast {
+  margin-top: 25px;
+}
